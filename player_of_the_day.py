@@ -1,5 +1,7 @@
-from fetcher import HLTVFetch
+from pathlib import Path
+from fetcher import HLTVFetch, LiquipediaFetch
 import random
+import datetime
 
 
 class PlayerOfTheDay:
@@ -13,5 +15,12 @@ class PlayerOfTheDay:
 
     @staticmethod
     def choose_player_and_save():
-        player = PlayerOfTheDay.choose_player()
-        PlayerOfTheDay.player = player
+        return PlayerOfTheDay.player_data(PlayerOfTheDay.choose_player())
+
+    @staticmethod
+    def player_data(player):
+        fp = Path(f'player_{datetime.date.today()}.txt')
+        fp.touch(exist_ok=True)
+        with open(fp, 'w') as f:
+            f.write(str(player))
+

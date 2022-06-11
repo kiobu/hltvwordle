@@ -47,3 +47,6 @@ class HLTVFetch:
         fp.touch(exist_ok=True)
         with open(fp, 'w') as f:
             f.write(str(HLTVFetch.teams))
+
+class LiquipediaFetch:
+    baseUrl = 'https://liquipedia.net/counterstrike'

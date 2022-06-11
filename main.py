@@ -29,7 +29,8 @@ async def write_mock_data():
 
 @app.get("/debug")
 async def debug():
-    print(PlayerOfTheDay.choose_player())
+    PlayerOfTheDay.choose_player_and_save()
+
 
 schedule.every().day.at("11:59").do(HLTVFetch.update)
 schedule.every().day.at("12:00").do(PlayerOfTheDay.choose_player_and_save)
